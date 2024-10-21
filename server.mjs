@@ -35,9 +35,9 @@ app.all("*", (req, res) => {
 });
 // app.use(express.json());
 
-// // app.get("/", (req, res) => {
-// //   res.send("Running 3000");
-// // });
+// app.get("/", (req, res) => {
+//   res.send("Running 3000");
+// });
 
 // app.post("/news/date", (req, res) => {
 //   news.date(req, res);
@@ -93,6 +93,11 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler);
 
+export default (req, res) => {
+  // Run the express app for requests
+  app(req, res);
+};
+
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
@@ -105,3 +110,6 @@ mongoose.connection.on("error", (err) => {
     "mongoErrLog.log"
   );
 });
+
+
+
